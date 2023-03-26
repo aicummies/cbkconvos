@@ -93,19 +93,19 @@ func getConversationMessages(bearerToken, conversationId string) []CBKConvoMessa
 
 func saveFormattedConversation(convos []CBKConvoMessage, name1, name2 string) {
 	folder := fmt.Sprintf("./chats/%s", name2)
-	filename := fmt.Sprint(convos[0].CreatedAt) + ".jsonl"
+	filename := fmt.Sprint(convos[0].CreatedAt)
 
 	err := os.MkdirAll(folder, os.ModePerm)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	file, err := os.Create(folder + "/" + filename)
+	file, err := os.Create(folder + "/" + filename + ".jsonl")
 	if err != nil {
 		panic(err)
 	}
 	defer file.Close()
-	backstory_file, err := os.Create(folder + "/backstory_" + filename)
+	backstory_file, err := os.Create(folder + "/backstory_" + filename + ".txt")
 	if err != nil {
 		panic(err)
 	}
